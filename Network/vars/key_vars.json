@@ -1,0 +1,100 @@
+{
+  "Admin@agro.com": {
+    "key": "Admin@agro.com",
+    "org": "agro.com",
+    "path": "/home/vars/keyfiles/ordererOrganizations/agro.com/users/Admin@agro.com/msp/keystore/priv_sk",
+    "pkey": "keyfiles/ordererOrganizations/agro.com/users/Admin@agro.com/msp/keystore/priv_sk",
+    "type": "users"
+  },
+  "Admin@buyer.agro.com": {
+    "key": "Admin@buyer.agro.com",
+    "org": "buyer.agro.com",
+    "path": "/home/vars/keyfiles/peerOrganizations/buyer.agro.com/users/Admin@buyer.agro.com/msp/keystore/priv_sk",
+    "pkey": "keyfiles/peerOrganizations/buyer.agro.com/users/Admin@buyer.agro.com/msp/keystore/priv_sk",
+    "type": "users"
+  },
+  "Admin@farmer.agro.com": {
+    "key": "Admin@farmer.agro.com",
+    "org": "farmer.agro.com",
+    "path": "/home/vars/keyfiles/peerOrganizations/farmer.agro.com/users/Admin@farmer.agro.com/msp/keystore/priv_sk",
+    "pkey": "keyfiles/peerOrganizations/farmer.agro.com/users/Admin@farmer.agro.com/msp/keystore/priv_sk",
+    "type": "users"
+  },
+  "agro.com": {
+    "key": "agro.com",
+    "org": "agro.com",
+    "path": "/home/vars/keyfiles/ordererOrganizations/agro.com/ca/priv_sk",
+    "pkey": "keyfiles/ordererOrganizations/agro.com/ca/priv_sk",
+    "type": "ca"
+  },
+  "agro.com.tlsca": {
+    "key": "agro.com",
+    "org": "agro.com",
+    "path": "/home/vars/keyfiles/ordererOrganizations/agro.com/tlsca/priv_sk",
+    "pkey": "keyfiles/ordererOrganizations/agro.com/tlsca/priv_sk",
+    "type": "tlsca"
+  },
+  "buyer.agro.com": {
+    "key": "buyer.agro.com",
+    "org": "buyer.agro.com",
+    "path": "/home/vars/keyfiles/peerOrganizations/buyer.agro.com/ca/priv_sk",
+    "pkey": "keyfiles/peerOrganizations/buyer.agro.com/ca/priv_sk",
+    "type": "ca"
+  },
+  "buyer.agro.com.tlsca": {
+    "key": "buyer.agro.com",
+    "org": "buyer.agro.com",
+    "path": "/home/vars/keyfiles/peerOrganizations/buyer.agro.com/tlsca/priv_sk",
+    "pkey": "keyfiles/peerOrganizations/buyer.agro.com/tlsca/priv_sk",
+    "type": "tlsca"
+  },
+  "farmer.agro.com": {
+    "key": "farmer.agro.com",
+    "org": "farmer.agro.com",
+    "path": "/home/vars/keyfiles/peerOrganizations/farmer.agro.com/ca/priv_sk",
+    "pkey": "keyfiles/peerOrganizations/farmer.agro.com/ca/priv_sk",
+    "type": "ca"
+  },
+  "farmer.agro.com.tlsca": {
+    "key": "farmer.agro.com",
+    "org": "farmer.agro.com",
+    "path": "/home/vars/keyfiles/peerOrganizations/farmer.agro.com/tlsca/priv_sk",
+    "pkey": "keyfiles/peerOrganizations/farmer.agro.com/tlsca/priv_sk",
+    "type": "tlsca"
+  },
+  "orderer1.agro.com": {
+    "key": "orderer1.agro.com",
+    "org": "agro.com",
+    "path": "/home/vars/keyfiles/ordererOrganizations/agro.com/orderers/orderer1.agro.com/msp/keystore/priv_sk",
+    "pkey": "keyfiles/ordererOrganizations/agro.com/orderers/orderer1.agro.com/msp/keystore/priv_sk",
+    "type": "orderers"
+  },
+  "orderer2.agro.com": {
+    "key": "orderer2.agro.com",
+    "org": "agro.com",
+    "path": "/home/vars/keyfiles/ordererOrganizations/agro.com/orderers/orderer2.agro.com/msp/keystore/priv_sk",
+    "pkey": "keyfiles/ordererOrganizations/agro.com/orderers/orderer2.agro.com/msp/keystore/priv_sk",
+    "type": "orderers"
+  },
+  "orderer3.agro.com": {
+    "key": "orderer3.agro.com",
+    "org": "agro.com",
+    "path": "/home/vars/keyfiles/ordererOrganizations/agro.com/orderers/orderer3.agro.com/msp/keystore/priv_sk",
+    "pkey": "keyfiles/ordererOrganizations/agro.com/orderers/orderer3.agro.com/msp/keystore/priv_sk",
+    "type": "orderers"
+  },
+  "peer1.buyer.agro.com": {
+    "key": "peer1.buyer.agro.com",
+    "org": "buyer.agro.com",
+    "path": "/home/vars/keyfiles/peerOrganizations/buyer.agro.com/peers/peer1.buyer.agro.com/msp/keystore/priv_sk",
+    "pkey": "keyfiles/peerOrganizations/buyer.agro.com/peers/peer1.buyer.agro.com/msp/keystore/priv_sk",
+    "type": "peers"
+  },
+  "peer1.farmer.agro.com": {
+    "key": "peer1.farmer.agro.com",
+    "org": "farmer.agro.com",
+    "path": "/home/vars/keyfiles/peerOrganizations/farmer.agro.com/peers/peer1.farmer.agro.com/msp/keystore/priv_sk",
+    "pkey": "keyfiles/peerOrganizations/farmer.agro.com/peers/peer1.farmer.agro.com/msp/keystore/priv_sk",
+    "type": "peers"
+  }
+}

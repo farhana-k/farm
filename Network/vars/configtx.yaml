@@ -1,0 +1,180 @@
+---
+Organizations:
+  - &agro-com
+      Name: agro-com
+      ID: agro-com
+      MSPDir: keyfiles/ordererOrganizations/agro.com/msp
+      Policies:
+        Readers:
+          Type: Signature
+          Rule: "OR('agro-com.member')"
+        Writers:
+          Type: Signature
+          Rule: "OR('agro-com.member')"
+        Admins:
+          Type: Signature
+          Rule: "OR('agro-com.admin')"
+  - &buyer-agro-com
+      Name: buyer-agro-com
+      ID: buyer-agro-com
+      MSPDir: keyfiles/peerOrganizations/buyer.agro.com/msp
+      Policies:
+        Readers:
+          Type: Signature
+          Rule: "OR('buyer-agro-com.admin', 'buyer-agro-com.peer', 'buyer-agro-com.client')"
+        Writers:
+          Type: Signature
+          Rule: "OR('buyer-agro-com.admin', 'buyer-agro-com.client')"
+        Admins:
+          Type: Signature
+          Rule: "OR('buyer-agro-com.admin')"
+        Endorsement:
+          Type: Signature
+          Rule: "OR('buyer-agro-com.peer')"
+
+      AnchorPeers:
+      - Host: 10.0.2.15
+        Port: 7003
+  - &farmer-agro-com
+      Name: farmer-agro-com
+      ID: farmer-agro-com
+      MSPDir: keyfiles/peerOrganizations/farmer.agro.com/msp
+      Policies:
+        Readers:
+          Type: Signature
+          Rule: "OR('farmer-agro-com.admin', 'farmer-agro-com.peer', 'farmer-agro-com.client')"
+        Writers:
+          Type: Signature
+          Rule: "OR('farmer-agro-com.admin', 'farmer-agro-com.client')"
+        Admins:
+          Type: Signature
+          Rule: "OR('farmer-agro-com.admin')"
+        Endorsement:
+          Type: Signature
+          Rule: "OR('farmer-agro-com.peer')"
+
+      AnchorPeers:
+      - Host: 10.0.2.15
+        Port: 7002
+
+Capabilities:
+  Channel: &ChannelCapabilities
+    V2_0: true
+
+  Orderer: &OrdererCapabilities
+    V2_0: true
+
+  Application: &ApplicationCapabilities
+    V2_0: true
+
+Application: &ApplicationDefaults
+  Organizations:
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+    LifecycleEndorsement:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Endorsement"
+    Endorsement:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Endorsement"
+
+  Capabilities:
+    <<: *ApplicationCapabilities
+
+Orderer: &OrdererDefaults
+  OrdererType: etcdraft
+
+  BatchTimeout: 2s
+
+  BatchSize:
+    MaxMessageCount: 10
+    AbsoluteMaxBytes: 99 MB
+    PreferredMaxBytes: 512 KB
+
+  Addresses:
+  - 10.0.2.15:7006
+  - 10.0.2.15:7007
+  - 10.0.2.15:7008
+  EtcdRaft:
+    Consenters:
+    - Host: 10.0.2.15
+      Port: 7006
+      ClientTLSCert: keyfiles/ordererOrganizations/agro.com/orderers/orderer1.agro.com/tls/server.crt
+      ServerTLSCert: keyfiles/ordererOrganizations/agro.com/orderers/orderer1.agro.com/tls/server.crt
+    - Host: 10.0.2.15
+      Port: 7007
+      ClientTLSCert: keyfiles/ordererOrganizations/agro.com/orderers/orderer2.agro.com/tls/server.crt
+      ServerTLSCert: keyfiles/ordererOrganizations/agro.com/orderers/orderer2.agro.com/tls/server.crt
+    - Host: 10.0.2.15
+      Port: 7008
+      ClientTLSCert: keyfiles/ordererOrganizations/agro.com/orderers/orderer3.agro.com/tls/server.crt
+      ServerTLSCert: keyfiles/ordererOrganizations/agro.com/orderers/orderer3.agro.com/tls/server.crt
+  Organizations:
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+    BlockValidation:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+
+Channel: &ChannelDefaults
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+
+  Capabilities:
+    <<: *ChannelCapabilities
+
+Profiles:
+  OrgChannel:
+    Consortium: SampleConsortium
+    <<: *ChannelDefaults
+    Application:
+      <<: *ApplicationDefaults
+      Organizations:
+      - *buyer-agro-com
+      - *farmer-agro-com
+      Capabilities:
+        <<: *ApplicationCapabilities
+
+  OrdererGenesis:
+    <<: *ChannelDefaults
+    Capabilities:
+      <<: *ChannelCapabilities
+    Orderer:
+      <<: *OrdererDefaults
+      Organizations:
+      - *agro-com
+      Capabilities:
+        <<: *OrdererCapabilities
+    Application:
+      <<: *ApplicationDefaults
+      Organizations:
+      - <<: *agro-com
+    Consortiums:
+      SampleConsortium:
+        Organizations:
+        - *buyer-agro-com
+        - *farmer-agro-com

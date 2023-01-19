@@ -1,0 +1,129 @@
+{
+  "name": "fabric-network",
+  "description": "Generated network configuration file",
+  "version": "0.1",
+  "client": {
+    "organization": "buyer.agro.com",
+    "credentialStore": {
+      "path": "/tmp/hfc-kvs",
+      "cryptoStore": {
+        "path": "/tmp/hfc-cvs"
+      },
+      "wallet": "wallet-name"
+    }
+  },
+  "organizations": {
+    "agro.com": {
+      "mspid": "agro-com",
+      "orderers": [
+        "orderer1.agro.com",
+        "orderer2.agro.com",
+        "orderer3.agro.com"
+      ],
+      "users": {
+        "Admin": {
+          "cert": "/keyfiles/ordererOrganizations/agro.com/users/Admin@agro.com/msp/signcerts/Admin@agro.com-cert.pem",
+          "private_key": "/keyfiles/ordererOrganizations/agro.com/users/Admin@agro.com/msp/keystore/priv_sk"
+        }
+      }
+    },
+    "buyer.agro.com": {
+      "mspid": "buyer-agro-com",
+      "peers": [
+        "peer1.buyer.agro.com"
+      ],
+      "users": {
+        "Admin": {
+          "cert": "/keyfiles/peerOrganizations/buyer.agro.com/users/Admin@buyer.agro.com/msp/signcerts/Admin@buyer.agro.com-cert.pem",
+          "private_key": "/keyfiles/peerOrganizations/buyer.agro.com/users/Admin@buyer.agro.com/msp/keystore/priv_sk"
+        }
+      }
+    },
+    "farmer.agro.com": {
+      "mspid": "farmer-agro-com",
+      "peers": [
+        "peer1.farmer.agro.com"
+      ],
+      "users": {
+        "Admin": {
+          "cert": "/keyfiles/peerOrganizations/farmer.agro.com/users/Admin@farmer.agro.com/msp/signcerts/Admin@farmer.agro.com-cert.pem",
+          "private_key": "/keyfiles/peerOrganizations/farmer.agro.com/users/Admin@farmer.agro.com/msp/keystore/priv_sk"
+        }
+      }
+    }
+  },
+  "orderers": {
+    "orderer1.agro.com": {
+      "url": "10.0.2.15:7006",
+      "grpcOptions": {
+        "grpc.ssl_target_name_override": "orderer1.agro.com",
+        "grpc-max-send-message-length": 15
+      },
+      "tlsCACerts": {
+        "path": "/keyfiles/ordererOrganizations/agro.com/orderers/orderer1.agro.com/tls/ca.crt"
+      }
+    },
+    "orderer2.agro.com": {
+      "url": "10.0.2.15:7007",
+      "grpcOptions": {
+        "grpc.ssl_target_name_override": "orderer2.agro.com",
+        "grpc-max-send-message-length": 15
+      },
+      "tlsCACerts": {
+        "path": "/keyfiles/ordererOrganizations/agro.com/orderers/orderer2.agro.com/tls/ca.crt"
+      }
+    },
+    "orderer3.agro.com": {
+      "url": "10.0.2.15:7008",
+      "grpcOptions": {
+        "grpc.ssl_target_name_override": "orderer3.agro.com",
+        "grpc-max-send-message-length": 15
+      },
+      "tlsCACerts": {
+        "path": "/keyfiles/ordererOrganizations/agro.com/orderers/orderer3.agro.com/tls/ca.crt"
+      }
+    }
+  },
+  "peers": {
+    "peer1.farmer.agro.com": {
+      "url": "10.0.2.15:7002",
+      "grpcOptions": {
+        "grpc.ssl_target_name_override": "peer1.farmer.agro.com",
+        "grpc-max-send-message-length": 15
+      },
+      "tlsCACerts": {
+        "path": "/keyfiles/peerOrganizations/farmer.agro.com/peers/peer1.farmer.agro.com/tls/ca.crt"
+      }
+    },
+    "peer1.buyer.agro.com": {
+      "url": "10.0.2.15:7003",
+      "grpcOptions": {
+        "grpc.ssl_target_name_override": "peer1.buyer.agro.com",
+        "grpc-max-send-message-length": 15
+      },
+      "tlsCACerts": {
+        "path": "/keyfiles/peerOrganizations/buyer.agro.com/peers/peer1.buyer.agro.com/tls/ca.crt"
+      }
+    }
+  },
+  "certificateAuthorities": {
+    "ca1.farmer.agro.com": {
+      "url": "https://10.0.2.15:7000",
+      "tlsCACerts": {
+        "path": "/keyfiles/peerOrganizations/farmer.agro.com/ca/ca1.farmer.agro.com-cert.pem"
+      },
+      "httpOptions": { "verify": "false" },
+      "caName": "ca1",
+      "registrar": { "enrollId": "admin", "enrollSecret": "adminpw" }
+    },
+    "ca1.buyer.agro.com": {
+      "url": "https://10.0.2.15:7001",
+      "tlsCACerts": {
+        "path": "/keyfiles/peerOrganizations/buyer.agro.com/ca/ca1.buyer.agro.com-cert.pem"
+      },
+      "httpOptions": { "verify": "false" },
+      "caName": "ca1",
+      "registrar": { "enrollId": "admin", "enrollSecret": "adminpw" }
+    }
+  }
+}

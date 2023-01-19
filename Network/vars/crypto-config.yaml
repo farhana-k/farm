@@ -1,0 +1,44 @@
+---
+OrdererOrgs:
+  - Name: agro.com
+    Domain: agro.com
+    Specs:
+      - Hostname: orderer1
+        SANS:
+          - 10.0.2.15
+      - Hostname: orderer2
+        SANS:
+          - 10.0.2.15
+      - Hostname: orderer3
+        SANS:
+          - 10.0.2.15
+
+PeerOrgs:
+  - Name: buyer.agro.com
+    Domain: buyer.agro.com
+    EnableNodeOUs: true
+    CA:
+      Hostname: ca1
+      CommonName: ca1.buyer.agro.com
+      Country: US
+      Province: North Carolina
+      Locality: Raleigh
+    Specs:
+      - Hostname: peer1
+        CommonName: peer1.buyer.agro.com
+        SANS:
+          - 10.0.2.15
+  - Name: farmer.agro.com
+    Domain: farmer.agro.com
+    EnableNodeOUs: true
+    CA:
+      Hostname: ca1
+      CommonName: ca1.farmer.agro.com
+      Country: US
+      Province: North Carolina
+      Locality: Raleigh
+    Specs:
+      - Hostname: peer1
+        CommonName: peer1.farmer.agro.com
+        SANS:
+          - 10.0.2.15
